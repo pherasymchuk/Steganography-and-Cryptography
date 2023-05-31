@@ -1,0 +1,44 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>Before we can get to actually concealing a message in an image, we need to learn how to handle images. In this stage, we will work on the command <code class="java">hide</code>.</p>
+<p>For our purposes, the image has to be in a lossless format. "Lossless" implies that the pixel values don't change when the image is saved and compressed. We are going to work with the <strong>PNG</strong> image format. Other known formats such as JPG use lossy compression image format, which would corrupt the hidden message.</p>
+<p>Images can be viewed as 2-dimensional arrays. In the picture below, you can see the image coordinate system:</p>
+<p style="text-align: center;"><img alt="image pixel coordinates" height="376" src="https://ucarecdn.com/2e5685a4-f503-468e-8736-14f201dec0ae/" width="661"/></p>
+<p>A 24-bit image offers more than 16 million colors for every pixel. If the RGB color scheme is used, then 8 bits (values 0–255) represent the Red, Green, and Blue colors. If the least significant bits of these 8-bit values change, the difference in the image will remain unnoticed. This is exactly what we will use for hiding our message in the next stages. In this stage, our program needs to set the <strong>least significant bit</strong> for each color of each pixel of the input image to the value <code class="java">1</code>.</p>
+<p style="text-align: center;"><img alt="24-bit rgb color bits" height="151" src="https://ucarecdn.com/4de3d615-2fc2-408e-b8f8-3b9d44ef92d0/" width="454"/></p>
+<p>Java classes <code class="java">BufferedImage</code>, <code class="java">ImageIO</code>, and <code class="java">Color</code> (<code class="java">java.awt.image.BufferedImage</code>, <code class="java">javax.imageio.ImageIO</code>, and <code class="java">java.awt.Color</code>) should be used for reading/writing and changing the images.</p>
+<p>With the <code class="java">BufferedImage</code> class methods, the image pixels can be accessed as a <strong>2-dimensional array</strong>. Also, note that the type <code class="java">BufferedImage.TYPE_INT_RGB</code> should be used for 24-bit color with the <code class="java">BufferedImage</code> class.</p>
+<p>You may find it helpful to look at some examples of the <a href="https://www.tutorialspoint.com/java_dip/java_buffered_image.htm" rel="noopener noreferrer nofollow" target="_blank">BufferedImage</a>, <a href="https://www.tutorialspoint.com/How-to-convert-Byte-Array-to-Image-in-java" rel="noopener noreferrer nofollow" target="_blank">ImageIO</a>, and <a href="https://www.tutorialspoint.com/java_dip/understand_image_pixels.htm" rel="noopener noreferrer nofollow" target="_blank">Color</a> classes.</p>
+<p>Finally, I/O operations can easily fail. However, the program should not stop when an I/O exception occurs, for example, if a wrong input filename is given, so all I/O exceptions should be handled.</p>
+<h5 id="objectives">Objectives</h5>
+<p>When the user inputs the command <code class="java">hide</code>, the program should prompt them for an input image filename with the message <code class="java">Input image file:</code> and an output image filename with the message <code class="java">Output image file:</code>. These should be used for reading the input image file and writing the output image file, respectively.</p>
+<p>After reading the filenames, the program should print the following messages: <code class="java">Input Image: [input filename]</code> and <code class="java">Output Image: [output filename]</code>.</p>
+<p>When the input image is read, the least significant bit for each color (Red, Green, and Blue) is set to <samp>1</samp>. The resulting image will be saved with the provided output image filename in the PNG<strong> </strong>format.</p>
+<p>A proper method should be applied so that the I/O exceptions do not terminate the program. In such cases, an exception message should be printed and the program should return to the command loop.</p>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1: </strong><em>Normal execution</em>.</p>
+<pre><code class="java">Task (hide, show, exit):
+&gt; hide
+Input image file:
+&gt; winter.png
+Output image file:
+&gt; image.png
+Input Image: winter.png
+Output Image: image.png
+Image image.png is saved.
+Task (hide, show, exit):
+&gt; exit
+Bye!</code></pre>
+<p><strong>Example 2: </strong><em>Input file does not exist, an exception is caught.</em></p>
+<pre><code class="java">Task (hide, show, exit):
+&gt; hide
+Input image file:
+&gt; notexist.png
+Output image file:
+&gt; image.png
+Can't read input file!
+Task (hide, show, exit):
+&gt; exit
+Bye!</code></pre>
+</div>

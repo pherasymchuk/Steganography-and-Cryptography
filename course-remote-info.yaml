@@ -1,0 +1,161 @@
+hyperskill_project:
+  id: 160
+  ide_files: https://cogniterra.org/media/attachments/lesson/25365/additional_files.json
+  is_template_based: false
+  use_ide: true
+update_date: "Wed, 31 May 2023 06:46:42 UTC"
+stages:
+- id: 830
+  step: 12266
+  is_completed: true
+- id: 831
+  step: 12267
+  is_completed: true
+- id: 832
+  step: 12268
+  is_completed: false
+- id: 833
+  step: 12269
+  is_completed: false
+topics:
+  0:
+  - title: Binary numbers
+    theory_id: 5544
+  - title: Hexadecimal numbers
+    theory_id: 8788
+  - title: Units of information
+    theory_id: 6865
+  - title: Introduction to Kotlin
+    theory_id: 4350
+  - title: Basic literals
+    theory_id: 4351
+  - title: Overview of the basic program
+    theory_id: 4362
+  - title: Values and variables
+    theory_id: 4371
+  - title: Val variables
+    theory_id: 17408
+  - title: Data types
+    theory_id: 4388
+  - title: The classification of basic types
+    theory_id: 4455
+  - title: Type conversion
+    theory_id: 4672
+  - title: Standard output
+    theory_id: 4425
+  - title: Invoking functions
+    theory_id: 4575
+  - title: Standard input with Java Scanner
+    theory_id: 4445
+  - title: Reading data with a readln
+    theory_id: 11224
+  - title: String basics
+    theory_id: 12553
+  - title: String templates
+    theory_id: 4547
+  - title: Boolean and logical operations
+    theory_id: 4515
+  - title: Arithmetic operations
+    theory_id: 4472
+  - title: Type of the numeric expression
+    theory_id: 9506
+  - title: Increment and decrement
+    theory_id: 10776
+  - title: Integers in action
+    theory_id: 4488
+  - title: Relational operators
+    theory_id: 4525
+  - title: If expression
+    theory_id: 4625
+  - title: Unicode
+    theory_id: 7899
+  - title: Characters
+    theory_id: 4680
+  - title: Ranges
+    theory_id: 4633
+  - title: When expression
+    theory_id: 4631
+  - title: Working with strings
+    theory_id: 12561
+  1:
+  - title: Binary arithmetic
+    theory_id: 19917
+  - title: Converting from decimal to binary
+    theory_id: 5614
+  - title: Converting from binary to decimal
+    theory_id: 5622
+  - title: 1s Complement
+    theory_id: 5745
+  - title: 2s Complement
+    theory_id: 5753
+  - title: Introduction to Operating systems
+    theory_id: 9704
+  - title: Files
+    theory_id: 13025
+  - title: Comments
+    theory_id: 4406
+  - title: Coding style conventions
+    theory_id: 4419
+  - title: Naming variables
+    theory_id: 4389
+  - title: Declaring functions
+    theory_id: 4580
+  - title: Errors in programs
+    theory_id: 11559
+  - title: Repeating blocks
+    theory_id: 4643
+  - title: Objects
+    theory_id: 11233
+  - title: Equality
+    theory_id: 11236
+  - title: Introduction to MutableList
+    theory_id: 14879
+  - title: For loop and ranges
+    theory_id: 4652
+  - title: Work with MutableLists
+    theory_id: 14902
+  - title: For loop and lists
+    theory_id: 15022
+  - title: Arrays
+    theory_id: 4564
+  - title: String arrays
+    theory_id: 11477
+  - title: Functions as objects
+    theory_id: 5991
+  - title: Lambda expressions
+    theory_id: 6154
+  - title: Multi-dimensional array
+    theory_id: 10950
+  - title: Reading files
+    theory_id: 6351
+  - title: Writing files
+    theory_id: 9710
+  - title: RGB
+    theory_id: 8819
+  - title: Image colors
+    theory_id: 14484
+  - title: Image libraries
+    theory_id: 16348
+  - title: Bitwise and bit-shift operations
+    theory_id: 14438
+  - title: What is an exception
+    theory_id: 7243
+  - title: Hierarchy of exceptions
+    theory_id: 13264
+  - title: Taming exceptions
+    theory_id: 7601
+  - title: The try-catch statement
+    theory_id: 10622
+  2:
+  - title: While loops
+    theory_id: 4659
+  - title: Introduction to collections
+    theory_id: 10390
+  - title: List
+    theory_id: 10730
+  - title: Getting substrings
+    theory_id: 8535
+  - title: Processing strings
+    theory_id: 9027
+  - title: Jumps and returns
+    theory_id: 6165

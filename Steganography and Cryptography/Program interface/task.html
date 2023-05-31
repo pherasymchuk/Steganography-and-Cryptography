@@ -1,0 +1,30 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>A steganography/cryptography program is versatile: it can perform a variety of tasks based on the user's wishes. You may want to hide a message within an image, encrypt the text message for extra security, or decipher a hidden message you got from someone else.</p>
+<p>In this stage, you will create the user interface for your program. The user will be able to choose a task by giving commands via standard input.</p>
+<h5 id="objectives">Objectives</h5>
+<p>The program should read input strings (commands) in a loop.</p>
+<p>Your program should:</p>
+<ul>
+<li>Print the message <code class="java">Task (hide, show, exit):</code> and read standard input in a loop.</li>
+<li>If the input is <code class="java">exit</code>, print <code class="java">Bye!</code> and exit.</li>
+<li>If the input is <code class="java">hide</code>, print <code class="java">Hiding message in image.</code> and return to the input loop.</li>
+<li>If the input is <code class="java">show</code>, print <code class="java">Obtaining message from image.</code> and return to the input loop.</li>
+<li>If any other string is input, then print <code class="java">Wrong task: [input String]</code> and return to the input loop.</li>
+</ul>
+<h5 id="example">Example</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example: </strong><em>How the user interface should work.</em></p>
+<pre><code class="java">Task (hide, show, exit):
+&gt; hide
+Hiding message in image.
+Task (hide, show, exit):
+&gt; show
+Obtaining message from image.
+Task (hide, show, exit):
+&gt; task
+Wrong task: task
+Task (hide, show, exit):
+&gt; exit
+Bye!</code></pre>
+</div>

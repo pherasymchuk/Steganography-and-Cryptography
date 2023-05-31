@@ -1,0 +1,56 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>We hid the message well, but one can't be too careful, so let's encrypt the message itself.</p>
+<p>Exclusive OR (XOR) is a logical operation whose output is only true when its inputs differ. XOR can also be used on data bits where <code class="java">1</code> stands for <code class="java">true</code> and <code class="java">0</code> stands for <code class="java">false</code>. Below you can find both the <strong>XOR truth table</strong> (on the left) with the input and output values of the XOR operation and the XOR bitwise operation (on the right).</p>
+<p style="text-align: center;"><img alt="xor truth table" height="226" src="https://ucarecdn.com/1a1b8579-e927-46bd-ad51-bcb878664a48/" width="873"/></p>
+<p>XOR has an interesting mathematical feature: <em>A XOR B = C</em> and <em>C XOR B = A</em>. If <em>A</em> is the message and <em>B</em> the password, then <em>C</em> is the encrypted message. Using <em>B</em> and <em>C,</em> we can reconstruct <em>A</em>.</p>
+<p>Below is an example where we use Bytes as a message, a password, and an encrypted message:</p>
+<p><img alt="message xor encryption" height="226" src="https://ucarecdn.com/9fbbe3e9-23c4-4c08-ba76-a4993a358f6c/" width="1295"/></p>
+<p>Thus, not only the same password can be used for encryption and decryption (<strong>symmetric encryption</strong>), but also the same simple method. This encryption is very strong if the password is random and has the same size as the message.</p>
+<p>In this stage, the user should be asked for a password, and then the message is encrypted before it's hidden in the image.</p>
+<h5 id="objectives">Objectives</h5>
+<p>When the <code class="java">hide</code> command is given and the secret message is input, the user should be prompted for a password with the message <code class="java">Password:</code>.</p>
+<p>The program reads the password string and converts it to a Bytes Array. The first message byte will be XOR encrypted using the first password byte, the second message byte will be XOR encrypted with the second password byte, and so on. If the password is shorter than the message, then after the last byte of the password, the first byte of the password should be used again.</p>
+<p>Three Bytes with values <samp>0</samp>, <samp>0</samp>, <samp>3</samp> should be added to the encrypted Bytes Array. If the image size is adequate for holding the Bytes array, the result is hidden in the image like in the previous stage.</p>
+<p>When the <code class="java">show</code> command is given and the filename is input, the user should be prompted for the password with the message <code class="java">Password:</code>. The image should open and the encrypted Bytes Array should be reconstructed just like in the previous stage; the program stops reading it when the bytes with the values <samp>0</samp>, <samp>0</samp>, <samp>3</samp> are found. The last three bytes should be removed and the encrypted Bytes Array should be decrypted using the password. Finally, the message should be restored to the String type, and the program should print <code class="java">Message:</code> and then the message itself on a new line.</p>
+<h5 id="example">Example</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1: </strong><em>Encrypting and decrypting a message</em>.</p>
+<pre><code class="java">Task (hide, show, exit):
+&gt; hide
+Input image file:
+&gt; travel.png
+Output image file:
+&gt; enc.png
+Message to hide:
+&gt; My encrypted message!
+Password:
+&gt; mypassword
+Message saved in enc.png image.
+Task (hide, show, exit):
+&gt; show
+Input image file:
+&gt; enc.png
+Password:
+&gt; mypassword
+Message:
+My encrypted message!
+Task (hide, show, exit):
+&gt; exit
+Bye!</code></pre>
+<p><strong>Example 2: </strong><em>Encrypting a message in a very small image</em>.</p>
+<pre><code class="java">Task (hide, show, exit):
+&gt; hide
+Input image file:
+&gt; small.png
+Output image file:
+&gt; out2.png
+Message to hide:
+&gt; abcdefghijk
+Password:
+&gt; mypassword
+The input image is not large enough to hold this message.
+Task (hide, show, exit):
+&gt; exit
+Bye!</code></pre>
+</div>

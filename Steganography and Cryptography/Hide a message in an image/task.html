@@ -1,0 +1,64 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>Steganography is about hiding information in such a way that no-one would ever guess there's a secret message hidden right before their eyes. The method we are going to use for concealing a message in an image is based on slight color changes that can’t be detected.</p>
+<p>As you already know, the message data can be inserted at the positions of the least significant bits of each color value of each pixel. That makes <samp>3</samp> bits per pixel and a total of <samp>3*[image width]*[image height]</samp> bits for the whole image. Of course, there is no need to use all of them: it would be more efficient to have an algorithm that picks which bits to use. We could make it even more complex: the bit selection can be based on a password so that the configuration is different every time the password is changed.</p>
+<p>However, to keep things simple, in this project, we will use only the least significant bits of the <strong>blue color</strong> of each pixel. Thus, each image can hold up to <samp>[image width]*[image height]</samp> bits.</p>
+<p>As seen in the previous stage, images can be handled as 2-dimensional arrays. In this stage, the order of pixels should be left to right in the first row and then the same for each consecutive row. The picture below illustrates the order:</p>
+<p style="text-align: center;"><img alt="image pixel rows" height="411" src="https://ucarecdn.com/460f08d1-73d9-45c3-8f38-741a39434858/" width="630"/></p>
+<p>The message to hide has the String type and UTF-8 charset. As a result, the message can be in any language. In order to conceal the secret message, we have to first convert it to an Array of Bytes: you can do it with the <code class="java">encodeToByteArray()</code> function. Respectively, an array of bytes can be restored to the String type by applying <code class="java">toString(Charsets.UTF_8)</code>.</p>
+<p>When the program reads the image bits in order to reconstruct the message, it has to know when to stop, that is, when it has read the entire message. For this, certain bytes should be applied at the end of the Bytes Array. Specifically, we will add three bytes with values <samp>0</samp>, <samp>0</samp>, <samp>3</samp> (or <samp>00000000 00000000 00000011</samp> in the binary format). When the program encounters these bytes, it will know that it has reached the end of the message.</p>
+<h5 id="objectives">Objectives</h5>
+<p>When the <code class="java">hide</code> command is given, the program gets the input and output image filenames as in the previous stage. Then, it prompts the user for the secret message by printing <code class="java">Message to hide:</code>.</p>
+<p>The message should be converted to an array of bytes. Then, 3 bytes with the values <samp>0</samp>, <samp>0</samp>, <samp>3</samp> should be added at the end of the array.</p>
+<p>The program should check that the image size is adequate for holding the Bytes array. If not, it should print an error message with the text <code class="java">The input image is not large enough to hold this message.</code> and return to the menu.</p>
+<p>Each bit of this Bytes Array will be saved at the position of the least significant bit of the blue color of each pixel, as shown in the picture below. The output image should be saved in the PNG format.</p>
+<p><img alt="rgb image steganography" height="452" src="https://ucarecdn.com/a1c5b62b-81d5-4c42-8120-226f4eb0b883/" width="1491"/></p>
+<p>When the <code class="java">show</code> command is given, the program asks for the image filename (previously saved with the hidden message) by printing <code class="java">Input image file:</code>. The image will be opened and the Bytes Array will be reconstructed bit by bit; the program will stop reading it when the bytes with the values <samp>0</samp>, <samp>0</samp>, <samp>3</samp> are encountered.</p>
+<p>The last 3 bytes (values <samp>0</samp>, <samp>0</samp>, <samp>3</samp>) should be removed from the end of the Bytes Array. Then, the message should be restored as a String from the Bytes Array (or <samp>00000000 00000000 00000011</samp> bits).</p>
+<p>The program should print <code class="java">Message:</code> and then the message itself on a new line.</p>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1: </strong><em>Hiding and extracting a message</em>.</p>
+<pre><code class="java">Task (hide, show, exit):
+&gt; hide
+Input image file:
+&gt; sky.png
+Output image file:
+&gt; hide.png
+Message to hide:
+&gt; Hello World!
+Message saved in hide.png image.
+Task (hide, show, exit):
+&gt; show
+Input image file:
+&gt; hide.png
+Message:
+Hello World!
+Task (hide, show, exit):
+&gt; exit
+Bye!</code></pre>
+<p><strong>Example 2: </strong><em>Hiding messages in a very small image.</em></p>
+<pre><code class="java">Task (hide, show, exit):
+&gt; hide
+Input image file:
+&gt; small.png
+Output image file:
+&gt; out1.png
+Message to hide:
+&gt; 123
+Message saved in out1.png image.
+Task (hide, show, exit):
+&gt; hide
+Input image file:
+&gt; small.png
+Output image file:
+&gt; out2.png
+Message to hide:
+&gt; abcdefghijk
+The input image is not large enough to hold this message.
+Task (hide, show, exit):
+&gt; exit
+Bye!
+
+</code></pre>
+</div>
