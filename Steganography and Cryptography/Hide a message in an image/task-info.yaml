@@ -207,6 +207,33 @@ files:
 - name: test/testimage.png
   visible: false
   learner_created: false
-feedback_link: https://hyperskill.org/projects/160/stages/832/implement#comment
-status: Unchecked
+- name: src/cryptography/util/Console.kt
+  visible: true
+  learner_created: true
+- name: src/cryptography/io/ImageIOHandler.kt
+  visible: true
+  learner_created: true
+- name: src/cryptography/command/Command.kt
+  visible: true
+  learner_created: true
+- name: src/cryptography/util/BitOperator.kt
+  visible: true
+  learner_created: true
+- name: test/out.png
+  visible: true
+  learner_created: true
+- name: src/cryptography/util/Steganography.kt
+  visible: true
+  learner_created: true
+- name: src/cryptography/io/Reader.kt
+  visible: true
+  learner_created: true
+- name: src/cryptography/util/Converter.kt
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/12268#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Sun, 04 Jun 2023 18:56:40 UTC"
 record: -1

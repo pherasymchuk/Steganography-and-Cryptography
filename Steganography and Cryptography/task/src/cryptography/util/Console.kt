@@ -1,15 +1,16 @@
 package cryptography.util
 
+import cryptography.io.Reader
 import java.io.File
 
-object Console {
+class Console(private val reader: Reader) {
     fun getInputFileFromUser(): File {
-        // val filePath = "${workingDir}${separator}Steganography and Cryptography${separator}task${separator}src${separator}cryptography${separator}image.jpg"
         println("Input image file:")
-        return File(readln())
+        return File(reader.readln())
     }
     fun getOutputFileFromUser(): File {
         println("Output image file:")
-        return File(readln())
+        return File(reader.readln())
     }
+    fun getMessageWithTerminator(): ByteArray = reader.readln().toByteArray() + listOf(0, 0, 3)
 }

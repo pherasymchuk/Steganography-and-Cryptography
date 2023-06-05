@@ -225,6 +225,52 @@ files:
 - name: test/testimage.png
   visible: false
   learner_created: false
-feedback_link: https://hyperskill.org/projects/160/stages/833/implement#comment
-status: Unchecked
+- name: src/cryptography/util/Console.kt
+  visible: true
+  learner_created: true
+- name: src/cryptography/io/ImageIOHandler.kt
+  visible: true
+  learner_created: true
+- name: src/cryptography/command/Command.kt
+  visible: true
+  learner_created: true
+- name: src/cryptography/util/BitOperator.kt
+  visible: true
+  learner_created: true
+- name: src/cryptography/io/Reader.kt
+  visible: true
+  learner_created: true
+- name: test/out.png
+  visible: true
+  learner_created: true
+- name: src/cryptography/util/Steganography.kt
+  visible: true
+  learner_created: true
+- name: src/cryptography/util/Converter.kt
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/12269#comment
+status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #1
+
+    Wrong output after inserting the message.
+
+    Please find below the output of your program during this failed test.
+    Note that the &#39;&gt;&#39; character indicates the beginning of the input line.
+
+    ---
+
+    Task (hide, show, exit):
+    &gt; hide
+    Input image file:
+    &gt; test/testimage.png
+    Output image file:
+    &gt; test/out.png
+    Message to hide:
+    &gt; Hyperskill steganography program.
+    Message saved in test/out.png image
+    Task (hide, show, exit):
+  time: "Mon, 05 Jun 2023 12:03:09 UTC"
 record: -1
