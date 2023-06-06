@@ -138,3 +138,34 @@ fabric.properties
 .idea/**/azureSettings.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij
+/.idea/frameworkLessonHistory/storage.storageData
+/.idea/frameworkLessonHistory/storage.storageRecordIndex
+/.idea/modules/Steganography and Cryptography/task/Steganography_and_Cryptography.Steganography_and_Cryptography-task.iml
+/.idea/modules/Steganography and Cryptography/task/Steganography_and_Cryptography.Steganography_and_Cryptography-task.main.iml
+/.idea/modules/Steganography and Cryptography/task/Steganography_and_Cryptography.Steganography_and_Cryptography-task.test.iml
+/.idea/modules/util/Steganography_and_Cryptography.util.iml
+/.idea/modules/util/Steganography_and_Cryptography.util.main.iml
+/.idea/modules/util/Steganography_and_Cryptography.util.test.iml
+/.idea/modules/Steganography_and_Cryptography.iml
+/.idea/.gitignore
+/.idea/compiler.xml
+/.idea/externalDependencies.xml
+/.idea/jarRepositories.xml
+/.idea/kotlinc.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/Steganography and Cryptography/Encrypt the message/task.html
+/Steganography and Cryptography/Encrypt the message/task-info.yaml
+/Steganography and Cryptography/Encrypt the message/task-remote-info.yaml
+/Steganography and Cryptography/Hide a message in an image/task.html
+/Steganography and Cryptography/Hide a message in an image/task-info.yaml
+/Steganography and Cryptography/Hide a message in an image/task-remote-info.yaml
+/Steganography and Cryptography/Program interface/task.html
+/Steganography and Cryptography/Program interface/task-info.yaml
+/Steganography and Cryptography/Program interface/task-remote-info.yaml
+/Steganography and Cryptography/Read and Write image files/task.html
+/Steganography and Cryptography/Read and Write image files/task-info.yaml
+/Steganography and Cryptography/Read and Write image files/task-remote-info.yaml
+/Steganography and Cryptography/lesson-info.yaml
+/hide.png
