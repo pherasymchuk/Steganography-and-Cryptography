@@ -1,45 +1,151 @@
 type: edu
 files:
-- name: src/cryptography/Main.kt
+  - name: src/cryptography/Main.kt
   visible: true
-  text: |-
+  text: |
     package cryptography
 
+    import cryptography.command.Command
+    import cryptography.io.Reader
+    import java.io.File
+
     fun main() {
-        val cryptography = Cryptography()
-        cryptography.printMessage()
-        cryptography.readInput()
-    }
-
-    class Cryptography {
-
-        fun printMessage() {
+        val reader: Reader = Reader.ConsoleReader() // selectReader()
+        while (true) {
             println("Task (hide, show, exit):")
-        }
-
-        fun readInput() {
-            while (true) {
-                when (val input = readln()) {
-                    "exit" -> {
-                        println("Bye!"); return
-                    }
-
-                    "hide" -> println("Hiding message in image.")
-                    "show" -> println("Obtaining message from image.")
-                    else -> println("Wrong task: $input")
+            val command = when (reader.readln()) {
+                "hide" -> Command.HideCommand(reader)
+                "show" -> Command.ShowCommand(reader)
+                "exit" -> Command.ExitCommand()
+                else -> {
+                    println("Invalid command!")
+                    continue
                 }
             }
+            command.execute()
         }
     }
-  learner_created: false
-- name: test/small.png
-  visible: false
-  learner_created: false
-- name: test/SteganographyTest.kt
-  visible: false
-  text: |+
-    import org.hyperskill.hstest.dynamic.DynamicTest
-    import org.hyperskill.hstest.stage.StageTest
+
+    private fun selectReader(): Reader {
+        println("Read from: (file, console (Default)):")
+        return when (readln().trim().lowercase()) {
+            "file" -> {
+                println("Enter file name (1.input.txt 2.show.txt):")
+                val file = when (readln()) {
+                    "1" -> File("input.txt")
+                    "2" -> File("show.txt")
+                    else -> throw IllegalArgumentException()
+                }
+                Reader.FileReader(file)
+            }
+
+            else -> Reader.ConsoleReader()
+        }
+    }
+    learner_created: false
+  - name: src/cryptography/util/Console.kt
+    visible: true
+    text: |
+      package cryptography.util
+      
+      import cryptography.io.Reader
+      import java.io.File
+      
+      class Console(private val reader: Reader) {
+          fun getInputFileFromUser(): File {
+              println("Input image file:")
+              return File(reader.readln())
+          }
+          fun getOutputFileFromUser(): File {
+              println("Output image file:")
+              return File(reader.readln())
+          }
+          fun getMessageAsByteArray(): ByteArray = reader.readln().toByteArray()
+      }
+    learner_created: false
+  - name: src/cryptography/command/Command.kt
+    visible: true
+    text: |
+      package cryptography.command
+      
+      import cryptography.io.ImageIOHandler
+      import cryptography.io.Reader
+      import cryptography.util.Console
+      import cryptography.util.Steganography
+      import kotlin.system.exitProcess
+      
+      interface Command {
+          fun execute()
+      
+          class HideCommand(reader: Reader) : Command {
+              private val imageIOHandler: ImageIOHandler = ImageIOHandler()
+              private val steganography: Steganography = Steganography()
+              private val console: Console = Console(reader)
+      
+              override fun execute() {
+                  val inputFile = console.getInputFileFromUser()
+                  val outputFile = console.getOutputFileFromUser()
+      
+                  if (!inputFile.exists()) return println("Can't read input file!")
+      
+                  println("Message to hide:")
+                  val terminator = byteArrayOf(0, 0, 3)
+                  val messageBytesWithTerminator: ByteArray = console.getMessageAsByteArray() + terminator
+                  val image = imageIOHandler.readImage(inputFile)
+      
+                  if (!steganography.canHideMessage(image, messageBytesWithTerminator)) {
+                      return println("The input image is not large enough to hold this message.")
+                  }
+                  steganography.hideMessage(image, messageBytesWithTerminator)
+                  imageIOHandler.writeImage(image, outputFile)
+                  println("Message saved in $outputFile image.")
+              }
+          }
+      
+          class ExitCommand : Command {
+              override fun execute() {
+                  println("Bye!")
+                  exitProcess(0)
+              }
+          }
+      
+          class ShowCommand(reader: Reader) : Command {
+              private val console: Console = Console(reader)
+              private val steganography = Steganography()
+              private val imageIOHandler = ImageIOHandler()
+              override fun execute() {
+                  val inputFile = console.getInputFileFromUser()
+                  if (!inputFile.exists()) return println("Can't read input file!")
+                  val message = steganography.extractMessage(imageIOHandler.readImage(inputFile))
+                  println("Message: \n$message")
+              }
+          }
+      }
+    learner_created: false
+  - name: src/cryptography/util/BitOperator.kt
+    visible: true
+    text: |
+      package cryptography.util
+      
+      class BitOperator {
+          fun setLeastSignificantBit(colorToChange: Int, charBit: Int): Int =
+              if (charBit == 1) {
+                  colorToChange or 1
+              } else {
+                  colorToChange and 254
+              }
+      
+          fun getLeastSignificantBit(value: Int): Int = value and 1
+      }
+    learner_created: false
+  - name: test/small.png
+    visible: false
+    learner_created: false
+  - name: test/SteganographyTest.kt
+    visible: false
+    text: |+
+      import org.hyperskill.hstest.dynamic.DynamicTest
+      import org.hyperskill.hstest.stage.StageTest
     import org.hyperskill.hstest.testcase.CheckResult
     import org.hyperskill.hstest.testing.TestedProgram
     import java.awt.Color
@@ -225,52 +331,28 @@ files:
 - name: test/testimage.png
   visible: false
   learner_created: false
-- name: src/cryptography/util/Console.kt
-  visible: true
-  learner_created: true
-- name: src/cryptography/io/ImageIOHandler.kt
-  visible: true
-  learner_created: true
-- name: src/cryptography/command/Command.kt
-  visible: true
-  learner_created: true
-- name: src/cryptography/util/BitOperator.kt
-  visible: true
-  learner_created: true
-- name: src/cryptography/io/Reader.kt
-  visible: true
-  learner_created: true
-- name: test/out.png
-  visible: true
-  learner_created: true
-- name: src/cryptography/util/Steganography.kt
-  visible: true
-  learner_created: true
-- name: src/cryptography/util/Converter.kt
-  visible: true
-  learner_created: true
-feedback_link: https://hyperskill.org/learn/step/12269#comment
-status: Failed
+  - name: src/cryptography/util/Converter.kt
+    visible: true
+    learner_created: true
+  - name: src/cryptography/util/ImageUtil.kt
+    visible: true
+    learner_created: true
+  - name: src/cryptography/util/MessageEncryptor.kt
+    visible: true
+    learner_created: true
+  - name: test/out.png
+    visible: true
+    learner_created: true
+  - name: test/out2.png
+    visible: true
+    learner_created: true
+  - name: src/cryptography/util/Steganography.kt
+    visible: true
+    learner_created: true
+feedback_link: https://hyperskill.org/projects/160/stages/833/implement#comment
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #1
-
-    Wrong output after inserting the message.
-
-    Please find below the output of your program during this failed test.
-    Note that the &#39;&gt;&#39; character indicates the beginning of the input line.
-
-    ---
-
-    Task (hide, show, exit):
-    &gt; hide
-    Input image file:
-    &gt; test/testimage.png
-    Output image file:
-    &gt; test/out.png
-    Message to hide:
-    &gt; Hyperskill steganography program.
-    Message saved in test/out.png image
-    Task (hide, show, exit):
-  time: "Mon, 05 Jun 2023 12:03:09 UTC"
-record: -1
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">Hyperskill</a>
+    to continue learning.
+  time: "Wed, 07 Jun 2023 07:34:59 UTC"
+record: 3
