@@ -15,7 +15,7 @@ git clone https://github.com/MYAUMUR/Steganography-and-Cryptography.git
 ```
 2. Change into the project directory:
 ```bash
-cd cryptography-steganography
+cd Steganography-and-Cryptography
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ cd Documents
 ```
 **Run the JAR file using the following command:**
 ```
-java -jar Steganography_and_Cryptography.jar
+java -jar Steganography.jar
 ```
 6. The application should start running, and you will see the following prompt:
 ```bash
