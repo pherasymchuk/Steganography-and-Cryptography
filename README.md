@@ -1,6 +1,7 @@
 # Steganography-and-Cryptography
 ## Description
 The Cryptography Steganography project allows you to hide and retrieve secret messages within images using steganography techniques. The messages can also be encrypted for added security. Steganography is a form of encryption where the secret message is concealed within another medium, such as an image, making it harder to detect.
+
 <img src="https://github.com/MYAUMUR/Steganography-and-Cryptography/assets/74320524/85f8f72e-2b79-4b75-983e-0e84ac077378" width="70%" height="70%">
 
 ## Features
