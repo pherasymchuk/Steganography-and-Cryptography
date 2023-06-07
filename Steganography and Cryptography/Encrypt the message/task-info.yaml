@@ -1,16 +1,16 @@
 type: edu
 files:
   - name: src/cryptography/Main.kt
-  visible: true
-  text: |
-    package cryptography
-
-    import cryptography.command.Command
-    import cryptography.io.Reader
-    import java.io.File
-
-    fun main() {
-        val reader: Reader = Reader.ConsoleReader() // selectReader()
+    visible: true
+    text: |
+      package cryptography
+      
+      import cryptography.command.Command
+      import cryptography.io.Reader
+      import java.io.File
+      
+      fun main() {
+          val reader: Reader = Reader.ConsoleReader() // selectReader()
         while (true) {
             println("Task (hide, show, exit):")
             val command = when (reader.readln()) {
@@ -32,16 +32,16 @@ files:
             "file" -> {
                 println("Enter file name (1.input.txt 2.show.txt):")
                 val file = when (readln()) {
-                    "1" -> File("input.txt")
-                    "2" -> File("show.txt")
-                    else -> throw IllegalArgumentException()
-                }
-                Reader.FileReader(file)
-            }
-
-            else -> Reader.ConsoleReader()
-        }
-    }
+                      "1" -> File("input.txt")
+                      "2" -> File("show.txt")
+                      else -> throw IllegalArgumentException()
+                  }
+                  Reader.FileReader(file)
+              }
+      
+              else -> Reader.ConsoleReader()
+          }
+      }
     learner_created: false
   - name: src/cryptography/util/Console.kt
     visible: true
@@ -146,16 +146,16 @@ files:
     text: |+
       import org.hyperskill.hstest.dynamic.DynamicTest
       import org.hyperskill.hstest.stage.StageTest
-    import org.hyperskill.hstest.testcase.CheckResult
-    import org.hyperskill.hstest.testing.TestedProgram
-    import java.awt.Color
-    import java.awt.image.BufferedImage
-    import java.io.File
-    import java.security.MessageDigest
-    import javax.imageio.ImageIO
-
-    class SteganographyTest: StageTest<Any>() {
-        @DynamicTest
+      import org.hyperskill.hstest.testcase.CheckResult
+      import org.hyperskill.hstest.testing.TestedProgram
+      import java.awt.Color
+      import java.awt.image.BufferedImage
+      import java.io.File
+      import java.security.MessageDigest
+      import javax.imageio.ImageIO
+      
+      class SteganographyTest: StageTest<Any>() {
+          @DynamicTest
         fun imageCreateTest(): CheckResult {
             val main = TestedProgram()
             var outputString = main.start().toLowerCase().trim()
@@ -321,16 +321,16 @@ files:
                 }
             }
             val md = MessageDigest.getInstance("SHA-1")
-            md.update(imageByteArray)
-            return md.digest().joinToString("") { "%02x".format(it) }
-        }
+              md.update(imageByteArray)
+              return md.digest().joinToString("") { "%02x".format(it) }
+          }
+      
+      }
 
-    }
-
-  learner_created: false
-- name: test/testimage.png
-  visible: false
-  learner_created: false
+    learner_created: false
+  - name: test/testimage.png
+    visible: false
+    learner_created: false
   - name: src/cryptography/util/Converter.kt
     visible: true
     learner_created: true
@@ -344,9 +344,6 @@ files:
     visible: true
     learner_created: true
   - name: test/out2.png
-    visible: true
-    learner_created: true
-  - name: src/cryptography/util/Steganography.kt
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/projects/160/stages/833/implement#comment

@@ -1,29 +1,22 @@
 type: edu
 files:
-- name: src/cryptography/Main.kt
+  - name: src/cryptography/Main.kt
   visible: true
-  text: |-
+  text: |
     package cryptography
 
     fun main() {
-        val cryptography = Cryptography()
-        cryptography.printMessage()
-        cryptography.readInput()
+        Cryptography().also { it.run() }
     }
 
     class Cryptography {
 
-        fun printMessage() {
+        fun run() {
             println("Task (hide, show, exit):")
-        }
 
-        fun readInput() {
             while (true) {
                 when (val input = readln()) {
-                    "exit" -> {
-                        println("Bye!"); return
-                    }
-
+                    "exit" -> return println("Bye!")
                     "hide" -> println("Hiding message in image.")
                     "show" -> println("Obtaining message from image.")
                     else -> println("Wrong task: $input")
@@ -167,16 +160,7 @@ files:
 - name: test/testimage.png
   visible: false
   learner_created: false
-- name: src/cryptography/command/Command.kt
-  visible: true
-  learner_created: true
-- name: src/cryptography/command/HideCommand.kt
-  visible: true
-  learner_created: true
 - name: src/cryptography/io/ImageIOHandler.kt
-  visible: true
-  learner_created: true
-- name: src/cryptography/model/Image.kt
   visible: true
   learner_created: true
 - name: src/cryptography/util/Console.kt
@@ -185,21 +169,18 @@ files:
 - name: src/cryptography/util/ImageHider.kt
   visible: true
   learner_created: true
-- name: src/cryptography/command/ExitCommand.kt
-  visible: true
-  learner_created: true
-- name: src/cryptography/images/image.jpg
-  visible: true
-  learner_created: true
-- name: test/out.png
-  visible: true
-  learner_created: true
-- name: src/cryptography/util/BitOperator.kt
-  visible: true
-  learner_created: true
-feedback_link: https://hyperskill.org/learn/step/12267#comment
+  - name: src/cryptography/command/Command.kt
+    visible: true
+    learner_created: true
+  - name: src/cryptography/util/BitOperator.kt
+    visible: true
+    learner_created: true
+  - name: src/cryptography/command/HideCommand.kt
+    visible: true
+    learner_created: true
+  - name: src/cryptography/command/ExitCommand.kt
+    visible: true
+    learner_created: true
+feedback_link: https://hyperskill.org/projects/160/stages/831/implement#comment
 status: Solved
-feedback:
-  message: Congratulations!
-  time: "Wed, 31 May 2023 08:34:20 UTC"
-record: 3
+record: 1

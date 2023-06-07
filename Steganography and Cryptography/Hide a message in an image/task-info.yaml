@@ -1,45 +1,91 @@
 type: edu
 files:
-- name: src/cryptography/Main.kt
-  visible: true
-  text: |-
-    package cryptography
-
-    fun main() {
-        val cryptography = Cryptography()
-        cryptography.printMessage()
-        cryptography.readInput()
-    }
-
-    class Cryptography {
-
-        fun printMessage() {
-            println("Task (hide, show, exit):")
-        }
-
-        fun readInput() {
-            while (true) {
-                when (val input = readln()) {
-                    "exit" -> {
-                        println("Bye!"); return
-                    }
-
-                    "hide" -> println("Hiding message in image.")
-                    "show" -> println("Obtaining message from image.")
-                    else -> println("Wrong task: $input")
-                }
-            }
-        }
-    }
-  learner_created: false
-- name: test/small.png
-  visible: false
-  learner_created: false
-- name: test/SteganographyTest.kt
-  visible: false
-  text: |+
-    import org.hyperskill.hstest.dynamic.DynamicTest
-    import org.hyperskill.hstest.stage.StageTest
+  - name: src/cryptography/Main.kt
+    visible: true
+    text: |
+      package cryptography
+      
+      import cryptography.command.ExitCommand
+      import cryptography.command.HideCommand
+      
+      fun main() {
+          while (true) {
+              println("Task (hide, show, exit):")
+              val command = when (readln().lowercase()) {
+                  "hide" -> HideCommand()
+                  "exit" -> ExitCommand()
+                  else -> {
+                      println("Invalid command!")
+                      continue
+                  }
+              }
+              command.execute()
+          }
+      }
+    learner_created: false
+  - name: src/cryptography/command/Command.kt
+    visible: true
+    text: |
+      package cryptography.command
+      
+      interface Command {
+          fun execute()
+      }
+    learner_created: false
+  - name: src/cryptography/io/ImageIOHandler.kt
+    visible: true
+    text: |
+      package cryptography.io
+      
+      import java.awt.image.BufferedImage
+      import java.io.File
+      import javax.imageio.ImageIO
+      
+      class ImageIOHandler {
+          fun readImage(file: File): BufferedImage {
+              return ImageIO.read(file)
+          }
+          fun writeImage(image: BufferedImage, file: File) {
+              ImageIO.write(image, "png", file)
+          }
+      }
+    learner_created: false
+  - name: src/cryptography/util/Console.kt
+    visible: true
+    text: |
+      package cryptography.util
+      
+      import java.io.File
+      
+      object Console {
+          fun getInputFileFromUser(): File {
+              // val filePath = "${workingDir}${separator}Steganography and Cryptography${separator}task${separator}src${separator}cryptography${separator}image.jpg"
+              println("Input image file:")
+              return File(readln())
+          }
+          fun getOutputFileFromUser(): File {
+              println("Output image file:")
+              return File(readln())
+          }
+      }
+    learner_created: false
+  - name: src/cryptography/util/BitOperator.kt
+    visible: true
+    text: |
+      package cryptography.util
+      
+      class BitOperator {
+          fun setLeastSignificantBitToOne(value: Int): Int = value or 1
+      }
+    learner_created: false
+  - name: test/small.png
+    visible: false
+    learner_created: false
+  - name: test/SteganographyTest.kt
+    visible: false
+    text: |+
+      import org.hyperskill.hstest.dynamic.DynamicTest
+      import org.hyperskill.hstest.stage.StageTest
     import org.hyperskill.hstest.testcase.CheckResult
     import org.hyperskill.hstest.testing.TestedProgram
     import java.awt.Color
@@ -207,33 +253,12 @@ files:
 - name: test/testimage.png
   visible: false
   learner_created: false
-- name: src/cryptography/util/Console.kt
-  visible: true
-  learner_created: true
-- name: src/cryptography/io/ImageIOHandler.kt
-  visible: true
-  learner_created: true
-- name: src/cryptography/command/Command.kt
-  visible: true
-  learner_created: true
-- name: src/cryptography/util/BitOperator.kt
-  visible: true
-  learner_created: true
-- name: test/out.png
-  visible: true
-  learner_created: true
+  - name: src/cryptography/io/Reader.kt
+    visible: true
+    learner_created: true
 - name: src/cryptography/util/Steganography.kt
   visible: true
   learner_created: true
-- name: src/cryptography/io/Reader.kt
-  visible: true
-  learner_created: true
-- name: src/cryptography/util/Converter.kt
-  visible: true
-  learner_created: true
-feedback_link: https://hyperskill.org/learn/step/12268#comment
+feedback_link: https://hyperskill.org/projects/160/stages/832/implement#comment
 status: Solved
-feedback:
-  message: Congratulations!
-  time: "Sun, 04 Jun 2023 18:56:40 UTC"
-record: -1
+record: 2
